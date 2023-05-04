@@ -1,3 +1,8 @@
+using Domain.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,8 +12,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddDbContext<ApplicationDbContext>(opt => 
+opt.UseMySql(builder.Configuration.GetConnectionString("MYSQL"),
+ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MYSQL"))));
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
