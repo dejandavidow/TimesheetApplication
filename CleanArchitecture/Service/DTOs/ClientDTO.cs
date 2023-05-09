@@ -1,8 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Service.DTOs
 {
-    public class Client
+    public class ClientDTO
     {
         [Key]
         public int Id { get; set; }
@@ -19,4 +24,5 @@ namespace Domain.Entities
         [MaxLength(100)]
         public string? PostalCode { get; set; }
     }
+}
 }

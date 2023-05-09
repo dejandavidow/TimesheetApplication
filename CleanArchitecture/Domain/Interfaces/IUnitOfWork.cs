@@ -8,7 +8,7 @@ namespace Domain.Interfaces
 {
     public interface IUnitOfWork
     {
-        ICategoryRepository CategoryRepository { get; }
+        ICategoriesRepository CategoryRepository { get; }
         Task SaveChanges();
     }
 }

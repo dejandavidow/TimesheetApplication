@@ -2,6 +2,8 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
+using Service.Implementations;
+using Service.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 opt.UseMySql(builder.Configuration.GetConnectionString("MYSQL"),
 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MYSQL"))));
 
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();

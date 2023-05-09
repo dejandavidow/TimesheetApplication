@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -19,28 +20,28 @@ namespace Infrastructure.Repository
             _repositoryContext = repositoryContext;
         }
 
-        public async Task<IEnumerable<T>> FindAll()
+        public IQueryable<T> FindAll()
         {
-            return await _repositoryContext.Set<T>().AsNoTracking().ToListAsync();
+            return  _repositoryContext.Set<T>().AsNoTracking();
         }
 
-        public async Task<IEnumerable<T>> FindByCondtition(Expression<Func<T, bool>> expression)
+        public IQueryable<T> FindByCondtition(Expression<Func<T, bool>> expression)
         {;
-            return await _repositoryContext.Set<T>().Where(expression).AsNoTracking().ToListAsync();
+            return  _repositoryContext.Set<T>().Where(expression).AsNoTracking();
         }
-        public void Create(T entity)
+        public  void Create(T entity)
         {
-            _repositoryContext.Set<T>().Add(entity);
+             _repositoryContext.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            _repositoryContext.Set<T>().Update(entity);
+             _repositoryContext.Set<T>().Update(entity);
         }
 
         public void Delete(T entity)
         {
-            _repositoryContext.Set<T>().Remove(entity);
+              _repositoryContext.Set<T>().Remove(entity);
         }
     }
 }
