@@ -1,14 +1,7 @@
-﻿using Domain.Entities;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
@@ -27,7 +20,7 @@ namespace Infrastructure.Repository
 
         public IQueryable<T> FindByCondtition(Expression<Func<T, bool>> expression)
         {;
-            return  _repositoryContext.Set<T>().Where(expression).AsNoTracking();
+            return _repositoryContext.Set<T>().Where(expression).AsNoTracking();
         }
         public  void Create(T entity)
         {

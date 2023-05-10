@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Domain.Pagination;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Service.DTOs;
 using Service.Interfaces;
-using Service.Pagination;
 
 namespace TimesheetAPI.Controllers
 {
@@ -16,7 +16,7 @@ namespace TimesheetAPI.Controllers
             _categoryService = categoriesService;
         }
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] QueryParameters parameters)
+        public async Task<IActionResult> Get([FromQuery] CategoryParameters parameters)
         {
             var categories = await _categoryService.GetCategoriesAsync(parameters);
             var metadata = new

@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Pagination;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Service.Pagination;
 
 namespace Infrastructure.Repository
 {
@@ -10,9 +10,11 @@ namespace Infrastructure.Repository
     {  
         public CategoriesRepository(ApplicationDbContext context) : base (context) { }
 
-        public  async Task<IEnumerable<Category>> GetCategories()
+        public  async Task<IEnumerable<Category>> GetCategories(CategoryParameters parameters)
         {
-            return  await FindAll().ToListAsync();
+            if (String.IsNullOrWhiteSpace(parameters.Name))
+            return await FindAll().ToListAsync();
+            return await FindByCondtition(x => x.Name.ToLower().Contains(parameters.Name.Trim().ToLower())).ToListAsync();
         }
 
         public async Task<Category> GetCategoryById(int id)

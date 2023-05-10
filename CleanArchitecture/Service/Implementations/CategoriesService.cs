@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Pagination;
 using Mapster;
 using Service.DTOs;
 using Service.Interfaces;
@@ -29,9 +30,9 @@ namespace Service.Implementations
             await _unitOfWork.SaveChanges();
         }
 
-        public async Task<PagedList<CategoryDTO>> GetCategoriesAsync(QueryParameters parameters)
+        public async Task<PagedList<CategoryDTO>> GetCategoriesAsync(CategoryParameters parameters)
         {
-           var categories = await _unitOfWork.CategoryRepository.GetCategories();
+           var categories = await _unitOfWork.CategoryRepository.GetCategories(parameters);
            var dtos =  categories.Adapt<IEnumerable<CategoryDTO>>();
            return PagedList<CategoryDTO>.ToPagedList(dtos,parameters.PageNumber,parameters.PageSize);
         }

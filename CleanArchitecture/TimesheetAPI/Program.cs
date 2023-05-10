@@ -19,6 +19,7 @@ opt.UseMySql(builder.Configuration.GetConnectionString("MYSQL"),
 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MYSQL"))));
 
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+builder.Services.AddScoped<IClientsService, ClientsService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();

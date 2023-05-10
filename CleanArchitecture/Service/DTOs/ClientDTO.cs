@@ -25,4 +25,4 @@ namespace Service.DTOs
         public string? PostalCode { get; set; }
     }
 }
-}
+

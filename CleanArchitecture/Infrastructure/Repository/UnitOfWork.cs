@@ -6,6 +6,7 @@ namespace Infrastructure.Repository
     public sealed class UnitOfWork : IUnitOfWork
     {
         private readonly ICategoriesRepository? _categoryRepository;
+        private readonly IClientsRepository? _clientsRepository;
         private readonly ApplicationDbContext _context;
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -20,6 +21,17 @@ namespace Infrastructure.Repository
                     return new CategoriesRepository(_context);
                 }
                 return _categoryRepository;
+            }
+        }
+        public IClientsRepository ClientsRepository
+        {
+            get
+            {
+                if (_clientsRepository == null)
+                {
+                    return new ClientsRepository(_context);
+                }
+                return _clientsRepository;
             }
         }
         public async Task SaveChanges()
