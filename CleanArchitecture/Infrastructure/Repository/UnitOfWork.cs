@@ -7,6 +7,7 @@ namespace Infrastructure.Repository
     {
         private readonly ICategoriesRepository? _categoryRepository;
         private readonly IClientsRepository? _clientsRepository;
+        private readonly IProjectsRepository? _projectsRepository;
         private readonly ApplicationDbContext _context;
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -32,6 +33,17 @@ namespace Infrastructure.Repository
                     return new ClientsRepository(_context);
                 }
                 return _clientsRepository;
+            }
+        }
+        public IProjectsRepository ProjectsRepository
+        {
+            get
+            {
+                if (_clientsRepository == null)
+                {
+                    return new ProjectsRepository(_context);
+                }
+                return _projectsRepository;
             }
         }
         public async Task SaveChanges()

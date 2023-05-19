@@ -34,7 +34,7 @@ namespace TimesheetAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CategoryDTO categoryDTO)
         {
-            await _categoryService.CreateCategoryAsync(categoryDTO);
+            await _categoryService.AddCategoryAsync(categoryDTO);
             return Ok();
         }
         [HttpDelete("{id}")]
@@ -47,6 +47,10 @@ namespace TimesheetAPI.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var category = await _categoryService.GetCategoryByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
             return Ok(category);
         }
         [HttpPut("{id}")]

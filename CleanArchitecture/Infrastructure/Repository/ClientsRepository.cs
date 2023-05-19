@@ -14,7 +14,7 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<Client>> GetAllClients(ClientParameters parameters)
+        public async Task<IEnumerable<Client>> GetClients(ClientParameters parameters)
         {
             if(String.IsNullOrWhiteSpace(parameters.Name))
             return await FindAll().ToListAsync();

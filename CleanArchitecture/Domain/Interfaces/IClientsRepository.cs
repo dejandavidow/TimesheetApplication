@@ -5,7 +5,7 @@ namespace Domain.Interfaces
 {
     public interface IClientsRepository : IRepositoryBase<Client>
     {
-        Task<IEnumerable<Client>> GetAllClients(ClientParameters queryParameters);
+        Task<IEnumerable<Client>> GetClients(ClientParameters queryParameters);
         Task<Client> GetClientById(int id);
     }
 }

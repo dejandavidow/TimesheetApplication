@@ -38,7 +38,7 @@ namespace Service.Implementations
 
         public async Task<PagedList<ClientDTO>> GetClientsAsync(ClientParameters queryParameters)
         {
-            var clients = await _unitOfWork.ClientsRepository.GetAllClients(queryParameters);
+            var clients = await _unitOfWork.ClientsRepository.GetClients(queryParameters);
             var dtos = clients.Adapt<IEnumerable<ClientDTO>>();
             return  PagedList<ClientDTO>.ToPagedList(dtos,queryParameters.PageNumber,queryParameters.PageSize);
         }

@@ -16,7 +16,7 @@ namespace Service.Implementations
             _unitOfWork = unitOfWork;
         }
 
-        public async Task CreateCategoryAsync(CategoryDTO categoryDTO)
+        public async Task AddCategoryAsync(CategoryDTO categoryDTO)
         {
             var category = categoryDTO.Adapt<Category>();
             _unitOfWork.CategoryRepository.Create(category);
@@ -39,8 +39,8 @@ namespace Service.Implementations
 
         public async Task<CategoryDTO> GetCategoryByIdAsync(int id)
         {
-            var category = await _unitOfWork.CategoryRepository.GetCategoryById(id);
-            return category.Adapt<CategoryDTO>();
+             var category = await _unitOfWork.CategoryRepository.GetCategoryById(id);
+             return category.Adapt<CategoryDTO>();
         }
 
         public async Task UpdateCategoryAsync(int id, CategoryDTO categoryDTO)

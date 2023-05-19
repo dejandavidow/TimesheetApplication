@@ -4,6 +4,7 @@
     {
         ICategoriesRepository CategoryRepository { get; }
         IClientsRepository ClientsRepository { get; }
+        IProjectsRepository ProjectsRepository { get; }
         Task SaveChanges();
     }
 }
